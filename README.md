@@ -1,36 +1,73 @@
-# 2015lab1
+#Kshop
 
-[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/cs109/2015lab1)
+演示地址：http://www.xujiantao.com/works/lvsenshop
 
-Lets talk a bit about how labs and sections work in cs109:
+GitHub：https://github.com/kaysen820/kshop
 
-1. Lab Notebooks are made available every Thursday evening.
-2. Lab Videos (which may not cover everything in the notebooks) are made available every Friday as well
-3. In sections starting Monday morning, and running upto the next Friday, your TA will present part of the lab to you. You ought to have looked at and perhaps tried the lab over the previous weekend, and your section might reach a consensus on what you'd like your TF to focus on: please communicate this.
+### 说明
+整站DIV+CSS+jQuery+Thinkphp，仿的 2012 年的绿森数码，后台仿的 Ecshop ，并且重新手写了所有前端页面，功能设计和前后端独自完成<br><br>
+主要的功能：支持支付宝支付、会员管理、积分管理、公告管理、幻灯片管理、分类管理、商品管理、评论管理、优惠券管理、订单管理、商城设置
+<hr />
 
-(Sections are 2 hours long. The first hour will be spent going over the lab, while the second if an office hour, where you can ask your TA questions about the homework, the lectures, the subject matter, and even the lab).
+### 安装
+1、PHP版本请使用 ≥ 5.3 并且 ≤ 5.6 
 
-The labs will be made available on public github repositories, with naming schemes like `cs109/2015lab1`.
+2、修改配置文件数据库相关并将表结构文件 kshop.sql 导入至Mysql，如果需要测试数据下载请到 [http://www.xujiantao.com/download/DataPackages.zip](http://www.xujiantao.com/download/DataPackages.zip) 中下载
 
-This is how you ought to work with them (our github tutorial has an example of this process on the `cs109/testing` repository):
+3、默认为 REWRITE 模式，需要开启 Apache 或 Nginx 的 REWRITE 并配置 vhost；如果使用的是 IIS 则需要自行将 .htaccess 转换成 IIS 的形式
 
-1. First fork the lab from the github web interface. For example, the first lab is at: https://github.com/cs109/2015lab1 . The fork button is at the upper right corner of the page. Press it.
-2. When it asks you where to fork the lab, choose your own github userid. The web interface will then take you to the web page for your fork. Mine is at: https://github.com/rahuldave/2015lab1 .
-3. Now look for the clone url at the bottom right of the page. If you set up your ssh keys, use the ssh url, else use the https url. Mine are `git@github.com:rahuldave/2015lab1.git` and `https://github.com/rahuldave/2015lab1.git` respectively. 
-4. Clone your fork down to your machine by obtaining a terminal (`/Applications/Utilities/Terminal.app` or equivalent on mac and `git-bash.exe` on windows). Change (`cd`) into an appropriate folder and clone by doing `git clone url` where the `url` is the one in step 3.
-5. Add a remote for the original repository that you forked from. We'll call this remote `course`. The command for this, for example, for the first lab is: `git remote add course git@github.com:cs109/2015lab1.git` or `git remote add course https://github.com/cs109/2015lab1.git`
-6. Now you have a local repository. Start the ipython notebook in the repository and run the labs. DO NOT run the notebooks ending in `_original.ipynb`. These are simply copies of the labs. We made these copies so that you can update them from our `course` remote in case we make any changes.
+4、后台访问地址为你配置的vhost地址后加/Admin (如：`http://loc.kshop.com/Admin`)，用户名和密码：admin admin
+<hr />
 
-For Lab 1 I'd start with pythonpandas, followed by babypython, and finally git. The git notebook can be run under the ipython notebook. But the git commands can also be run directly on a terminal, which is probably the best place to do them...you can keep the notebook on the side to read as you follow along). So after once having read the tutorial, as described earlier, you now get to work through it.
+### 历史版本
+___Kshop-v1.4___
+```PHP
+更改Runtime路径
+配置默认为不缓存所有数据并开启DEBUG
+修复部分命名错误的类、方法、变量
+支付和订单部分的数据库操作加了悲观行锁
+分离测试数据到 Tag 中
+修复上传文件安全问题
+```
 
-When you follow along, you can add in your own notes, and try your own variations. As you are doing this, dont forget to continue doing the "add/commit/push" cycle, so that you save and version your changes, and push them to your fork. This typically looks like:
-    - git add .
-    - git commit -a
-    - git push
-    
-In case we make changes, you can incorporate them into your repo by doing: `git fetch course; git checkout course/master -- labname_original.ipynb` where `labname.ipynb` is the lab in question. An "add/commit/push" cycle will make sure these changes go into your fork as well. If you intend to work on the changed file, simply copy the file to another one and work on it. Or you could make a new branch. Remember that this fork is YOUR repository, and you can do to it what you like. 
+___Kshop-v1.3___
+```PHP
+增加模块分组、关联查询、复合查询、分离Model层
+大部分功能进行重写，时间有限，还有一小部分BUG未修复
+增加针对TP2.1版本的URL安全漏洞补丁
+```
 
-The diagram below should help elucidate the above and serve as a command cheat-sheet.
+___Kshop-Revision-v1.2___
+```PHP
+修复XSS和SQL注入过滤
+调整了数据库操作方面和分页问题
+处理了部分物品、购物车、订单所属权限问题
+```
 
-![homework](cs109gitflow3.png)
+___Kshop-v1.1___
+```PHP
+2013.11发布 1.1 版本并开源，修复BUG若干，重新整理前后端代码格式
+```
 
+___Kshop-v1.0___
+```PHP
+2012-1-21完成第一版本，仿的当时的绿森数码，后台仿的Ecshop
+所有前端代码重新手写，后端根据我个人的设计和思路独自完成
+集成支付宝支付功能
+```
+<hr />
+
+### 建议
+建议增加一个全局的模型的自动验证
+<hr />
+
+### 其他
+下一版本主要是脱离PHP框架开发的功能更强大的B2C独立网店系统
+
+可以进行安装、多模板、插件功能、多种支付方式、分析和报表、RBAC等...
+
+如果有感兴趣的朋友可以Email我
+
+如要正式商用此源码或修改后商用的请Email通知本人
+
+Email: kaysen820@gmail.com
